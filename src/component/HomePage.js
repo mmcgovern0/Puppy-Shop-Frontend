@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BrandContainer from '../container/BrandContainer'
 // import { Link } from 'react-router-dom'
 
 class HomePage extends Component {
@@ -23,9 +24,21 @@ class HomePage extends Component {
     }
 
     render() {
+      console.log(this.props.user)
         return (
             <div>
-                Logged in home page
+                Logged in home page 
+                <h3>state</h3>
+                {this.state.user.username}
+                <h3>props</h3>
+                {this.props.user.username}
+
+                <BrandContainer 
+                    brands={this.props.brands} 
+                    index={this.props.index} 
+                    moreBrands={this.props.moreBrands}
+                    lessBrands={this.props.lessBrands}
+                />
             </div>
         );
     }

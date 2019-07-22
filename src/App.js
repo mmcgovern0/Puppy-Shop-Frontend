@@ -7,6 +7,9 @@ import ProductsContainer from './container/ProductsContainer'
 import PetsContainer from './container/PetsContainer'
 import NotFoundPage from './component/NotFoundPage'
 import LandingPage from './component/LandingPage'
+import ProfilePage from './component/ProfilePage'
+import EditProfile from './component/EditProfile'
+import PetShowPage from './component/PetShowPage'
 import { Switch, Route } from 'react-router-dom'
 import Nav from './component/Nav'
 
@@ -14,12 +17,14 @@ class App extends Component {
 
   state = {
     user: {},
-    pets: []
+    pets: [],
+    brands: [],
+    brandIndex: 0
   }
 
   componentDidMount() {
-    console.log("Component did mount in app")
     this.checkLoggedIn()
+    this.fetchBrands()
     this.findPets()
   }
 
@@ -42,8 +47,28 @@ class App extends Component {
     }
   }
 
+  fetchBrands = () => {
+    fetch('http://localhost:3001/brands')
+    .then(r => r.json())
+    .then(brandData => {
+      this.setState({brands: brandData})
+    })
+  }
+
   handleLogin = () => {
     this.checkLoggedIn()
+  }
+
+  nextFourBrands = () => {
+    if(this.state.brandIndex < 8) {
+      this.setState({brandIndex: this.state.brandIndex + 4})
+    }
+  }
+
+  lastFourBrands = () => {
+    if(this.state.brandIndex > 2) {
+      this.setState({brandIndex: this.state.brandIndex - 4})
+    }
   }
 
   findPets = () => {
@@ -59,14 +84,13 @@ class App extends Component {
           return pet.user_id === this.state.user.id
         })
         this.setState({pets: userPet})
-        console.log(this.state.pets)
       })
     }
   }
 
 
   render() {
-
+    
     return (
       <div>
         <Nav user={this.state.user} onLogout={this.handleLogout} />
@@ -74,11 +98,11 @@ class App extends Component {
           <Route 
             exact 
             path="/" 
-            render={(routerProps) => <LandingPage {...routerProps} user={this.state.user}/>}
+            render={(routerProps) => <LandingPage {...routerProps} user={this.state.user} brands={this.state.brands} index={this.state.brandIndex} moreBrands={this.nextFourBrands} lessBrands={this.lastFourBrands}/> }
           />
           <Route  
             path="/home" 
-            render={(routerProps) => <HomePage {...routerProps} user={this.state.user}/>}
+            render={(routerProps) => <HomePage {...routerProps} user={this.state.user} brands={this.state.brands} index={this.state.brandIndex} moreBrands={this.nextFourBrands} lessBrands={this.lastFourBrands}/>}
           />
           <Route
             path="/login"
@@ -95,6 +119,18 @@ class App extends Component {
           <Route 
             path="/pets"
             render={(routerProps) => <PetsContainer {...routerProps} user={this.state.user} pets={this.state.pets} />}
+          />
+          <Route
+            path="/profile"
+            render={(routerProps) => <ProfilePage {...routerProps} user={this.state.user} pets={this.state.pets}/>} 
+          />
+          <Route
+            path="/edit-profile"
+            render={(routerProps)=> <EditProfile {...routerProps} user={this.state.user}/>}
+          />
+          <Route 
+            path="/pet"
+            render={(routerProps)=> <PetShowPage {...routerProps} user={this.state.user}/>}
           />
           <Route component={NotFoundPage}/>
         </Switch>
