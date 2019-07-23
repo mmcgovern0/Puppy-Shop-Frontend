@@ -17,14 +17,13 @@ class HomePage extends Component {
           })
           .then(r => r.json())
           .then(profileInfo => {
-            console.log("fetch in home page")
             this.setState({user: profileInfo})
           })
         }
     }
 
     render() {
-      console.log(this.props.user)
+      
         return (
             <div>
                 Logged in home page 

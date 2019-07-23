@@ -1,17 +1,20 @@
 import './App.css';
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom'
 import LoginPage from './component/LoginPage'
 import HomePage from './component/HomePage'
 import SignupPage from './component/SignupPage'
-import ProductsContainer from './container/ProductsContainer'
-import PetsContainer from './container/PetsContainer'
-import NotFoundPage from './component/NotFoundPage'
+import Nav from './component/Nav'
 import LandingPage from './component/LandingPage'
+import NotFoundPage from './component/NotFoundPage'
 import ProfilePage from './component/ProfilePage'
 import EditProfile from './component/EditProfile'
 import PetShowPage from './component/PetShowPage'
-import { Switch, Route } from 'react-router-dom'
-import Nav from './component/Nav'
+import NewPet from './component/NewPet'
+import EditPet from './component/EditPet'
+import PetsContainer from './container/PetsContainer'
+import CartContainer from './container/CartContainer';
+import ProductsContainer from './container/ProductsContainer'
 
 class App extends Component {
 
@@ -19,13 +22,20 @@ class App extends Component {
     user: {},
     pets: [],
     brands: [],
-    brandIndex: 0
+    brandIndex: 0,
+    products: [],
+    cart: []
   }
 
   componentDidMount() {
     this.checkLoggedIn()
-    this.fetchBrands()
     this.findPets()
+    this.fetchBrands()
+    this.fetchProducts()
+  }
+  
+  handleLogin = () => {
+    this.checkLoggedIn()
   }
 
   handleLogout = () => {
@@ -47,30 +57,6 @@ class App extends Component {
     }
   }
 
-  fetchBrands = () => {
-    fetch('http://localhost:3001/brands')
-    .then(r => r.json())
-    .then(brandData => {
-      this.setState({brands: brandData})
-    })
-  }
-
-  handleLogin = () => {
-    this.checkLoggedIn()
-  }
-
-  nextFourBrands = () => {
-    if(this.state.brandIndex < 8) {
-      this.setState({brandIndex: this.state.brandIndex + 4})
-    }
-  }
-
-  lastFourBrands = () => {
-    if(this.state.brandIndex > 2) {
-      this.setState({brandIndex: this.state.brandIndex - 4})
-    }
-  }
-
   findPets = () => {
     if(localStorage.token){
       fetch('http://localhost:3001/pets', {
@@ -88,6 +74,62 @@ class App extends Component {
     }
   }
 
+  handleNewPet = (newPet) => {
+    fetch('http://localhost:3001/pets', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          // Authorization: localStorage.token
+      },
+      body: JSON.stringify(newPet)
+    })
+    .then(r => r.json())
+    .then(petData => {
+      console.log(petData)
+      this.setState({pets: [...this.state.pets, petData]})
+    })
+  }
+
+  fetchBrands = () => {
+    fetch('http://localhost:3001/brands')
+    .then(r => r.json())
+    .then(brandData => {
+      this.setState({brands: brandData})
+    })
+  }
+
+  nextFourBrands = () => {
+    if(this.state.brandIndex < 8) {
+      this.setState({brandIndex: this.state.brandIndex + 4})
+    }
+  }
+
+  lastFourBrands = () => {
+    if(this.state.brandIndex > 2) {
+      this.setState({brandIndex: this.state.brandIndex - 4})
+    }
+  }
+
+  fetchProducts = () => {
+    fetch('http://localhost:3001/products', {
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+    .then(r => r.json())
+    .then(productsData => {
+      this.setState({products: productsData})
+    })
+  } 
+
+  addToCart = (item) => {
+    if(localStorage.token){
+      this.setState({cart: [...this.state.cart, item]})
+    } else {
+      alert("Please log in or sign up")
+    }
+  }
 
   render() {
     
@@ -114,7 +156,7 @@ class App extends Component {
           />
           <Route 
             path="/products" 
-            render={(routerProps) => <ProductsContainer {...routerProps} user={this.state.user}/>}
+            render={(routerProps) => <ProductsContainer {...routerProps} user={this.state.user} products={this.state.products} addToCart={this.addToCart}/>}
           />
           <Route 
             path="/pets"
@@ -131,6 +173,18 @@ class App extends Component {
           <Route 
             path="/pet"
             render={(routerProps)=> <PetShowPage {...routerProps} user={this.state.user}/>}
+          />
+          <Route 
+            path="/new-pet"
+            render={(routerProps)=> <NewPet {...routerProps} user={this.state.user} handleNewPet={this.handleNewPet}/>}
+          />
+          <Route
+            path="/edit-pet"
+            render={(routerProps) => <EditPet {...routerProps} user={this.state.user}/>}
+          />
+          <Route
+            path="/cart"
+            render={(routerProps) => <CartContainer {...routerProps} cartItems={this.state.cart}/>}
           />
           <Route component={NotFoundPage}/>
         </Switch>

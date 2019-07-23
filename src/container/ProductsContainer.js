@@ -3,13 +3,14 @@ import ProductPage from '../component/ProductPage'
 
 class ProductsContainer extends Component {
     render() {
-        console.log(this.props.user)
-        console.log(localStorage.token)
+        
+        const product = this.props.products.map(product => {
+            return <ProductPage key={product.id} product={product} addToCart={this.props.addToCart}/>
+        })
 
         return (
             <div>
-                ProductsContainer
-                <ProductPage user={this.props.user}/>
+                {product}
             </div>
         );
     }

@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 class PetShowPage extends Component {
 
-    click = () => {
-        console.log("edit puppers")
-    }
+    // click = () => {
+    //     fetch(`http://localhost:3001/pets/${this.props.location.state.pet.id}`,{
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Accept: 'application/json'
+    //         }
+    //     })
+    //     .then(r => r.json)
+    //     .then(petData => {
+    //         console.log(petData)
+    //     })
+    // }
 
     render() {
         return (
@@ -19,10 +30,14 @@ class PetShowPage extends Component {
                 Weight:
                 {this.props.location.state.pet.weight} lbs.<br/>
 
-                <button onClick={this.click}>Edit {this.props.location.state.pet.name}</button>
+                {/* <button onClick={this.click}>Delete {this.props.location.state.pet.name}</button> */}
+                <Link to={{pathname: '/edit-pet', state: {pet: this.props.location.state.pet}}}>Edit {this.props.location.state.pet.name}</Link>
             </div>
         );
     }
 }
 
 export default PetShowPage;
+
+
+

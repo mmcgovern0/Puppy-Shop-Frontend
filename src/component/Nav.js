@@ -46,6 +46,29 @@ class Nav extends Component {
                         </div>
 
                     <div className="rightNav">
+
+                        { this.props.user.id ?
+                            <div className="ui vertical animated button" tabIndex="0">
+                            <div className="hidden content"><Link to="/pets">Pets</Link></div>
+                            <div className="visible content">
+                                <i className="paw icon"></i>
+                            </div>
+                            </div>
+                            :
+                            null
+                        }
+
+                        {this.props.user.id ?
+                            <div className="ui vertical animated button" tabIndex="0">
+                            <div className="hidden content" ><Link to='/profile'>{this.props.user.username}</Link></div>
+                            <div className="visible content">
+                                <i className="user circle outline icon"></i>
+                            </div>
+                            </div>
+                            :
+                            null
+                        }   
+
                         { this.props.user.id ? 
                             <div className="ui animated button" tabIndex="0" onClick={this.logout}>
                             <div className="hidden content" ><Link to='/'>Log Out</Link></div>
@@ -61,28 +84,6 @@ class Nav extends Component {
                             </div>
                             </div>
                         }
-
-                        { this.props.user.id ?
-                            <div className="ui vertical animated button" tabIndex="0">
-                            <div className="hidden content"><Link to="/pets">Pets</Link></div>
-                            <div className="visible content">
-                                <i className="paw icon"></i>
-                            </div>
-                            </div>
-                            :
-                            null
-                        }
-
-                        {this.props.user.id ?
-                            <div className="ui animated button" tabIndex="0">
-                            <div className="hidden content" ><Link to='/profile'>{this.props.user.username}</Link></div>
-                            <div className="visible content">
-                                <i className="user circle outline icon"></i>
-                            </div>
-                            </div>
-                            :
-                            null
-                        }                 
                     </div>
                 </div>
             </div>

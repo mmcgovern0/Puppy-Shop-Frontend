@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 class EditProfile extends Component {
 
     state = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        username: '',
-        password: ''
+        firstName: this.props.user.first_name,
+        lastName: this.props.user.last_name,
+        email: this.props.user.email,
+        phone: this.props.user.phone,
+        address: this.props.user.address,
+        city: this.props.user.city,
+        state: this.props.user.state,
+        zip: this.props.user.zip,
+        username: this.props.user.username,
+        password: this.props.user.password
     }
 
     handleChange = (event) => {

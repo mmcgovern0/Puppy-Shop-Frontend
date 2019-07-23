@@ -11,11 +11,14 @@ class ProfilePage extends Component {
 
     addPet = () => {
         console.log("add pet")
+        this.props.history.push('/new-pet')
     }
 
     allTrans = () => {
         console.log("all transactions")
     }
+
+    
 
     render() {
         return (
@@ -23,15 +26,11 @@ class ProfilePage extends Component {
                 <h1>Welcome {this.props.user.username}</h1> 
 
                 <h2>User Info</h2>
-                {this.props.user.username}<br/>
-                {this.props.user.first_name}<br/>
-                {this.props.user.last_name}<br/>
-                {this.props.user.email}<br/>
-                {this.props.user.phone}<br/>
-                {this.props.user.address}<br/>
-                {this.props.user.city}<br/>
-                {this.props.user.state}<br/>
-                {this.props.user.zip}<br/>
+                Username: {this.props.user.username}<br/>
+                Name: {this.props.user.first_name} {this.props.user.last_name}<br/>
+                email: {this.props.user.email}<br/>
+                phone: {this.props.user.phone}<br/>
+                Address: {this.props.user.address} City: {this.props.user.city} State: {this.props.user.state} Zip: {this.props.user.zip}<br/>
 
                 <button onClick={this.click}>Edit Profile</button><br/>
                 <hr/>
