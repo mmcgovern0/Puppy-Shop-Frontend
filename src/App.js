@@ -136,6 +136,7 @@ class App extends Component {
     return (
       <div>
         <Nav user={this.state.user} onLogout={this.handleLogout} />
+
         <Switch>
           <Route 
             exact 

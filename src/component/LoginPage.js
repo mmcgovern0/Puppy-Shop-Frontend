@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import swal from 'sweetalert2'
 
 class LoginPage extends Component {
 
@@ -29,7 +30,13 @@ class LoginPage extends Component {
                 this.props.onLogin()
                 this.props.history.push('/home')
             } else {
-                alert("Incorrect username and/or password")
+                // alert("Incorrect username and/or password")
+                swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: "Incorrect username and/or password",
+                    // footer: '<a href>Why do I have this issue?</a>'
+                  })
             }
             
         })

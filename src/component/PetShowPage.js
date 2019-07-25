@@ -17,6 +17,23 @@ class PetShowPage extends Component {
     //     })
     // }
 
+    componentDidMount() {
+        if(localStorage.token){
+            fetch('http://localhost:3001/pets', {
+                headers: {
+                Authorization: localStorage.token
+                }
+            })
+            .then(r => r.json())
+            .then(petsData => {
+                let userPet = petsData.filter(pet => {
+                return pet.user_id === this.props.user.id
+                })
+                this.setState({pets: userPet})
+            })
+        }
+    }
+
     render() {
         return (
             <div>
