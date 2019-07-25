@@ -60,7 +60,7 @@ class Nav extends Component {
 
                         {this.props.user.id ?
                             <div className="ui vertical animated button" tabIndex="0">
-                            <div className="hidden content" ><Link to='/profile'>{this.props.user.username}</Link></div>
+                            <div className="hidden content" ><Link to='/profile'>Profile</Link></div>
                             <div className="visible content">
                                 <i className="user circle outline icon"></i>
                             </div>
