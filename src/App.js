@@ -112,10 +112,12 @@ class App extends Component {
   }
 
   fetchProducts = () => {
+    const headers = {}
+    if (localStorage.token) {
+      headers.Authorization = localStorage.token
+    }
     fetch('http://localhost:3001/products', {
-      headers: {
-        Authorization: localStorage.token
-      }
+      headers: headers
     })
     .then(r => r.json())
     .then(productsData => {
