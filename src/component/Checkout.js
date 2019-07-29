@@ -9,7 +9,8 @@ class Checkout extends Component {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json"
+                Accept: "application/json",
+                Authorization: localStorage.token
             },
             body: JSON.stringify({token, addresses})
         })
@@ -26,6 +27,7 @@ class Checkout extends Component {
                 token = {this.onToken}
                 amount = {this.props.total * 100}
                 billingAddress
+                shippingAddress
                 zipCode
                 description="Costal Pet Supplies"
                 image="https://images.unsplash.com/photo-1562176552-b512ffac91fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PetContainer from '../container/PetsContainer'
+import LikesContainer from '../container/LikesContainer'
+import swal from 'sweetalert2'
+
 // import { Link } from 'react-router-dom'
 
 class ProfilePage extends Component {
@@ -16,6 +19,21 @@ class ProfilePage extends Component {
 
     allTrans = () => {
         console.log("all transactions")
+    }
+
+    secret = () => {
+        swal.fire({
+            title: 'Come fly with me',
+            width: 600,
+            padding: '3em',
+            background: '#fff url(/images/trees.png)',
+            backdrop: `
+              rgba(0,0,123,0.4)
+              url("https://sweetalert2.github.io/images/nyan-cat.gif")
+              center left
+              no-repeat
+            `
+        })
     }
 
     
@@ -36,6 +54,12 @@ class ProfilePage extends Component {
                 <hr/>
                 <PetContainer pets={this.props.pets} user={this.props.user}/>
                 <button onClick={this.addPet}>Add Pet</button>
+                <hr/>
+                <h3>Favorite Products</h3>
+                <LikesContainer user={this.props.user} favorites={this.props.favorites} addToCart={this.props.addToCart}/>
+
+                <hr/>
+                <button onClick={this.secret}>Secret</button>
                 <hr/>
                 <h2>Add Transaction Container</h2>
                 <button onClick={this.allTrans}>View All Transactions</button>

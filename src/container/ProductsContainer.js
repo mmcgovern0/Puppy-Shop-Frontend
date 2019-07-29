@@ -5,7 +5,7 @@ class ProductsContainer extends Component {
     render() {
         
         const product = this.props.products.map(product => {
-            return <ProductPage key={product.id} product={product} addToCart={this.props.addToCart}/>
+            return <ProductPage key={product.id} product={product} user={this.props.user} addToCart={this.props.addToCart} addToLikes={this.props.addToLikes} addFavorite={this.props.addFavorite}/>
         })
 
         return (

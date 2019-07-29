@@ -6,6 +6,9 @@ import Checkout from '../component/Checkout';
 
 
 class CartContainer extends Component {
+    
+
+
     render() {
 
         let total = 0
@@ -19,9 +22,6 @@ class CartContainer extends Component {
                 <CartItem key={item.id} item={item}/>
             )
         })
-
-
-        console.log(this.props.cartItems)
         
 
         return (

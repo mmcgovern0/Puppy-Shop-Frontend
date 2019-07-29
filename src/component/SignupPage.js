@@ -31,7 +31,8 @@ class SignupPage extends Component {
             state: this.state.state,
             zip: this.state.zip,
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            balance: 100
         }
         fetch('http://localhost:3001/signup', {
             method: 'POST',
