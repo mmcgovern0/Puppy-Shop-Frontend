@@ -24,20 +24,8 @@ class ProductPage extends Component {
     like = (event) => {
         this.props.addFavorite(this.props.user.id, this.props.product)
         event.target.style.color = "red"
-        // if(localStorage.token){
-        //     swal.fire({
-        //         position: 'center',
-        //         type: 'success',
-        //         title: '❤️',
-        //         showConfirmButton: false,
-        //         timer: 1000
-        //       });
-        // }
     }
 
-    addFav = () => {
-        this.props.addFavorite(this.props.user.id, this.props.product)
-    }
 
 
 
@@ -45,7 +33,6 @@ class ProductPage extends Component {
         return (
             <div className="ui card">
                 <div className="content">
-                    <i className="right floated like icon"></i>
                 <div className="header">{this.props.product.name}</div>
                 <div className="description">
                     <p>{this.props.product.size}</p>
@@ -55,14 +42,13 @@ class ProductPage extends Component {
             <div className="extra content">
                 <span className="left floated like">
                     <i className="like icon" onClick={this.like}></i>
-                    Like
+                    Favorite
                 </span>
                 <span className="right floated cart" onClick={this.click}>
                     <i className="cart icon" ></i>
                     Add to cart
                 </span>
             </div>
-            <button onClick={this.addFav}>Add Favorite</button>
             </div>
         );
     }

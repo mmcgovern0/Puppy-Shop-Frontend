@@ -4,7 +4,8 @@ import StripeCheckout from 'react-stripe-checkout'
 
 class Checkout extends Component {
 
-    onToken = (token, addresses) => {
+    onToken = (token, addresses, amount=(this.props.total)) => {
+        
         fetch("http://localhost:3001/charges", {
             method: "POST",
             headers: {
@@ -12,7 +13,7 @@ class Checkout extends Component {
                 Accept: "application/json",
                 Authorization: localStorage.token
             },
-            body: JSON.stringify({token, addresses})
+            body: JSON.stringify({token: token, addresses: addresses,amount: amount})
         })
         .then(r => r.json())
         .then(chargeData => {
