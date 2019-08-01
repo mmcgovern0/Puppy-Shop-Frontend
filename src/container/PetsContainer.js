@@ -3,6 +3,11 @@ import PetComponent from '../component/PetComponent'
 
 class PetsContainer extends Component {
 
+    addPet = () => {
+        console.log("add pet")
+        this.props.history.push('/new-pet')
+    }
+
     render() {
         const pet = this.props.pets.map(pet => {
             return <PetComponent key={pet.id} pet={pet} user={this.props.user} />
@@ -10,7 +15,18 @@ class PetsContainer extends Component {
         
         return (
             <div>
-                <h2>{this.props.user.username}'s Pets</h2>
+                <div className="ui inverted vertical masthead center aligned segment">
+
+                <div className="ui text container">
+                <h1 className="ui inverted header">
+                    {this.props.user.first_name}'s Pets
+                </h1>
+                <h2>Pets are humanizing. They remind us we have an obligation and responsibility to preserve and nurture and care for all life.</h2>
+                <button className="ui small button" onClick={this.addPet}>Add Pet</button>
+                </div>
+
+                </div>
+
                 {pet}
             </div>
         );
@@ -18,3 +34,8 @@ class PetsContainer extends Component {
 }
 
 export default PetsContainer;
+
+
+
+
+

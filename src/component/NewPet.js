@@ -25,7 +25,7 @@ class NewPet extends Component {
             user_id: this.props.user.id
         }
         this.props.handleNewPet(newPet)
-        this.props.history.push('/profile')
+        this.props.history.push('/pets')
 
     }
 

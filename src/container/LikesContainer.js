@@ -9,7 +9,7 @@ class LikesContainer extends Component {
         })
 
         return (
-            <div>
+            <div className="fav-products">
                 {userFavorites}
             </div>
         );

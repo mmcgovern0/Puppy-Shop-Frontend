@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import CartItem from '../component/CartItem'
-// import {Elements, StripeProvider} from 'react-stripe-elements';
-// import CheckoutForm from '../component/CheckoutForm';
 import Checkout from '../component/Checkout';
 
 
 class CartContainer extends Component {
     
-
+    reroute = () => {
+        this.props.history.push('/home')
+    }
 
     render() {
 
@@ -19,7 +19,7 @@ class CartContainer extends Component {
 
         const item = this.props.cartItems.map(item => {
             return( 
-                <CartItem key={item.id} item={item}/>
+                <CartItem key={item.id} item={item} removeFromCart={this.props.removeFromCart}/>
             )
         })
         
@@ -29,12 +29,12 @@ class CartContainer extends Component {
                 {this.props.cartItems.length ?
                     item
                     :
-                    <p>Your cart is empty</p>
+                    <p style={{marginLeft: "45%", marginTop: "10%", fontSize: "30px", fontFamily: "fantasy"}}>Your cart is empty</p>
                 }
                 {this.props.cartItems.length ?
-                    <div>
+                    <div style={{textAlign: "center"}}>
                     <h3>Total: ${total}</h3>
-                    <Checkout total={total}/>
+                    <Checkout total={total} clearCart={this.props.clearCart} reroute={this.reroute}/>
                     </div>
                     :
                     null

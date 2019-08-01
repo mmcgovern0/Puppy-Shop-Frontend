@@ -6,7 +6,7 @@ class SignupPage extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        phone: '',
+        // phone: '',
         address: '',
         city: '',
         state: '',
@@ -25,7 +25,7 @@ class SignupPage extends Component {
             first_name: this.state.firstName,
             last_name: this.state.lastName,
             email: this.state.email,
-            phone: this.state.phone,
+            // phone: this.state.phone,
             address: this.state.address,
             city: this.state.city,
             state: this.state.state,
@@ -86,10 +86,10 @@ class SignupPage extends Component {
                     </div>
                 </div>
                 <div className="fields">
-                    <div className="field">
+                    {/* <div className="field">
                     <label>Phone Number</label>
-                    <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="phone number" value={this.state.phone} onChange={this.handleChange} name="phone"/>
-                    </div>
+                    <input type="number" placeholder="phone number" value={this.state.phone} onChange={this.handleChange} name="phone"/>
+                    </div> */}
                     <div className="field">
                     <label>Email</label>
                     <input type="email" placeholder="email" value={this.state.email} onChange={this.handleChange} name="email"/>

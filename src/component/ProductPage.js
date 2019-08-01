@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify'
-import "react-toastify/dist/ReactToastify.css";
 import swal from 'sweetalert2'
 // import { Link } from 'react-router-dom'
 
-toast.configure();
+
 
 class ProductPage extends Component {
 
@@ -31,7 +29,7 @@ class ProductPage extends Component {
 
     render() {
         return (
-            <div className="ui card">
+            <div id="product-card" className="ui fluid card">
                 <div className="content">
                 <div className="header">{this.props.product.name}</div>
                 <div className="description">

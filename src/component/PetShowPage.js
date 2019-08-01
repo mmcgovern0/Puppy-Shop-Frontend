@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-
+import img from '../img/adorable-animal-blur-406014.jpg'
 class PetShowPage extends Component {
 
     // click = () => {
@@ -36,8 +36,8 @@ class PetShowPage extends Component {
 
     render() {
         return (
-            <div>
-                <h2>{this.props.location.state.pet.name}</h2>
+            <div  className="pet-container">
+                {/* <h2>{this.props.location.state.pet.name}</h2>
                 Species:
                 {this.props.location.state.pet.species}<br/>
                 Breed:
@@ -48,13 +48,37 @@ class PetShowPage extends Component {
                 {this.props.location.state.pet.weight} lbs.<br/>
 
                 {/* <button onClick={this.click}>Delete {this.props.location.state.pet.name}</button> */}
-                <Link to={{pathname: '/edit-pet', state: {pet: this.props.location.state.pet}}}>Edit {this.props.location.state.pet.name}</Link>
+                {/* <Link to={{pathname: '/edit-pet', state: {pet: this.props.location.state.pet}}}>Edit {this.props.location.state.pet.name}</Link> */}
+
+
+
+                <div id="pet-show" className="ui card">
+                    <div className="content">
+                        <div className="center aligned header">{this.props.location.state.pet.name}</div>
+                        <div className="center aligned description">
+                        <p>{this.props.location.state.pet.name} is a beautiful {this.props.location.state.pet.breed} aged {this.props.location.state.pet.age}.</p>
+                        <p>{this.props.location.state.pet.name} weighs {this.props.location.state.pet.weight} pounds</p>
+                        </div>
+                    </div>
+                    <div className="extra content">
+                        <div className="center aligned author">
+                        <img className="ui avatar image" src={img}/> <br/>
+                        <Link to={{pathname: '/edit-pet', state: {pet: this.props.location.state.pet}}}>Edit {this.props.location.state.pet.name}</Link>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
             </div>
         );
     }
 }
 
 export default PetShowPage;
+
+
 
 
 

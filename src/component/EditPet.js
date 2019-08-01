@@ -33,7 +33,7 @@ class EditPet extends Component {
         })
         .then(r => r.json())
         .then(petData => {
-            this.props.history.push('/profile')
+            this.props.history.push('/pets')
         })
         this.forceUpdate()
     }

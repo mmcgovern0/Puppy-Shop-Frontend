@@ -265,6 +265,9 @@ class App extends Component {
   }
 
 
+  clearCart = () => {
+    this.setState({cart: []})
+  }
   
 
   addToLikes = (item) => {
@@ -272,6 +275,15 @@ class App extends Component {
       this.setState({likes: [...this.state.likes, item]})
     } else {
       swal.fire("Please log in or sign up")
+    }
+  }
+
+  removeFromCart = (item) => {
+    if(localStorage.token){
+      let newCart = this.state.cart.filter(cartItem => {
+        return item.id !== cartItem.id
+      })
+      this.setState({cart: newCart})     
     }
   }
 
@@ -416,6 +428,8 @@ class App extends Component {
               cartItems={this.state.cart}
               user={this.state.user}
               updateBalance={this.updateBalance}
+              clearCart={this.clearCart}
+              removeFromCart={this.removeFromCart}
               />
             }
           />
