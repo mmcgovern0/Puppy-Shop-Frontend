@@ -201,10 +201,15 @@ class App extends Component {
       })
       .then(r => r.json())
       .then(favoriteData => {
-        let favoritesObj = favoriteData.filter(favorite => {
-          return favorite.user_id === this.state.user.id
-        })
-        this.setState({favorites: favoritesObj})
+        console.log(favoriteData)
+        if(favoriteData){
+
+          let favoritesObj = favoriteData.filter(favorite => {
+            return favorite.user_id === this.state.user.id
+          })
+          this.setState({favorites: favoritesObj})
+
+        }
       })       
     }
   }
@@ -380,6 +385,7 @@ class App extends Component {
                 pets={this.state.pets} 
                 favorites={this.state.favorites} 
                 addToCart={this.addToCart}
+                removeFavorite={this.removeFavorite}
               />
             } 
           />

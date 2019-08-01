@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PetContainer from '../container/PetsContainer'
+// import PetContainer from '../container/PetsContainer'
 import LikesContainer from '../container/LikesContainer'
 import swal from 'sweetalert2'
 
@@ -74,7 +74,7 @@ class ProfilePage extends Component {
                 </div>
                 <div className="column">
                 <h3>Favorite Products</h3>
-                <LikesContainer user={this.props.user} favorites={this.props.favorites} addToCart={this.props.addToCart}/>
+                <LikesContainer user={this.props.user} favorites={this.props.favorites} addToCart={this.props.addToCart} removeFavorite={this.props.removeFavorite}/>
                 </div>
             </div>
             </div>

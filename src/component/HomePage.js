@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BrandContainer from '../container/BrandContainer'
+// import BrandContainer from '../container/BrandContainer'
 import LikesContainer from '../container/LikesContainer'
 import img from '../img/adorable-animal-breed-2023384.jpg'
 import img2 from '../img/animal-blond-hair-canine-1898858.jpg'
@@ -68,7 +68,7 @@ class HomePage extends Component {
                 <div className="ui middle aligned stackable grid container">
                   <div className="row">
                     <div className="eight wide column">
-                      <h3 className="ui header" style={{fontFamily: 'fantasy', fontWeight: 'bold', fontSize: '30px'}}>Woof Pack™️</h3>
+                      <h3 className="ui header" style={{fontFamily: 'fantasy', fontWeight: 'bold', fontSize: '30px'}}>Woof Pack<span>™</span></h3>
                       <p>Leading the pack in pet products</p>
                       <h3 className="ui header" style={{fontFamily: 'fantasy', fontWeight: 'bold', fontSize: '30px'}}>We Help Owners and Their Companions</h3>
                       <p>Finding the perfect product for your pet has never been easier</p> 
@@ -115,12 +115,12 @@ class HomePage extends Component {
             </div>
 
 
-              <BrandContainer 
+              {/* <BrandContainer 
                   brands={this.props.brands} 
                   index={this.props.index} 
                   moreBrands={this.props.moreBrands}
                   lessBrands={this.props.lessBrands}
-              />
+              /> */}
             </div>
         );
     }

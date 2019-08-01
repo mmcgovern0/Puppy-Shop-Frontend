@@ -15,7 +15,19 @@ class ProductsContainer extends Component {
 
         return (
             <div>
-                <div className="ui text menu" style={{padding: "20px"}}>
+            
+                <div className="ui inverted vertical masthead center aligned segment">
+
+                <div className="ui text container">
+                <h1 className="ui inverted header">
+                    Woof Pack
+                </h1>
+                <h2>Pets are humanizing. They remind us we have an obligation and responsibility to preserve and nurture and care for all life.</h2>
+                </div>
+                </div>
+
+
+                {/* <div className="ui text menu" style={{padding: "20px"}}>
                 <div className="header item">Sort By</div>
                 <button className="item" value="food" onClick={this.click}>Food</button>
                 <button className="item" value="toys" onClick={this.click}>Toys</button>
@@ -23,18 +35,7 @@ class ProductsContainer extends Component {
                 <button className="item" value="harnesses" onClick={this.click}>Harnesses</button>
                 <button className="item" value="beds" onClick={this.click}>Beds</button>
                 <button className="item" value="health" onClick={this.click}>Health Care</button>
-                
-                
-                {/* <a class="active item">
-                    Closest
-                </a>
-                <a class="item">
-                    Most Comments
-                </a>
-                <a class="item">
-                    Most Popular
-                </a> */}
-                </div>
+                </div> */}
                 {product}
             </div>
         );
