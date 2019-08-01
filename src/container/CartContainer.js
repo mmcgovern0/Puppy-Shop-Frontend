@@ -27,7 +27,9 @@ class CartContainer extends Component {
         return (
             <div>
                 {this.props.cartItems.length ?
-                    item
+                    <div className="cart-items">
+                        {item}
+                    </div>
                     :
                     <p style={{marginLeft: "45%", marginTop: "10%", fontSize: "30px", fontFamily: "fantasy"}}>Your cart is empty</p>
                 }
